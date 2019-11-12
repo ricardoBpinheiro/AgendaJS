@@ -10,7 +10,7 @@ btnLoginGoogle.addEventListener('click', function(){
         var token = result.credential.accessToken;
         // The signed-in user info.
         var user = result.user;
-        // ...
+        alert("Login realizado com sucesso!");
         window.location.replace('initial-page.html')
       }).catch(function(error) {
         // Handle Errors here.
@@ -20,6 +20,6 @@ btnLoginGoogle.addEventListener('click', function(){
         var email = error.email;
         // The firebase.auth.AuthCredential type that was used.
         var credential = error.credential;
-        // ...
+        alert("Ocorreu um erro!");
       });
 });
