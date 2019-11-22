@@ -1,4 +1,4 @@
-<h1>ProjetoAgenda</h1>
+<h1>Projeto Agenda</h1>
 <h2>Projeto de software - 4°fase</h2>
 <strong>Requisitos do Aplicativo</strong><br>
 1- Login e cadastro com diversas plataformas (Google, gmail, Facebook)<br>
