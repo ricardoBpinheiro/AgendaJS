@@ -9,7 +9,7 @@
 <body>
     <div class="form-group">
         <input type="text" class="form-control form-control-user" id="InputAgenda"
-        aria-describedby="emailHelp" placeholder="dados">
+        aria-describedby="emailHelp" placeholder="Compras">
     </div>
     <button class="btn btn-primary btn-user btn-block" id="btnDados">
         Enviar
@@ -18,8 +18,17 @@
     <ul id="dataList"></ul>
     <hr>
 
+
+    <div class="form-group">
+        <input type="text" class="form-control form-control-user" id="InputDelete"
+        aria-describedby="emailHelp" placeholder="dados">
+    </div>
+    <button class="btn btn-primary btn-user btn-block" id="btnDelete">
+        Deletar
+    </button>
+
   <!-- The core Firebase JS SDK is always required and must be listed first -->
-  <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase.js"></script>
+  
   <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-app.js"></script>
 
   <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-auth.js"></script>

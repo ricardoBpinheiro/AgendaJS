@@ -7,7 +7,7 @@ btnLogin.addEventListener('click', function(){
         alert("Usuario Conectado!");
         console.log("Sucesso!");
 
-        window.location.replace('initial-page.html');  //Redireciona o usuario para a outra pagina
+        window.location.replace('agenda.html');  //Redireciona o usuario para a outra pagina
 
     }).catch(function(error) {   
         // Handle Errors here.

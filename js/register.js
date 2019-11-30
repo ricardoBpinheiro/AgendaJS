@@ -6,7 +6,7 @@ btnRegister.addEventListener('click', function(){
     firebase.auth().createUserWithEmailAndPassword(inputEmail.value, inputPassword.value).then(function (result){
         alert("Usuario Cadastrado com Sucesso!");
         console.log("Sucesso");
-        window.location.replace('initial-page.html');
+        window.location.replace('agenda.html');
 
     }).catch(function(error) {
         // Handle Errors here.

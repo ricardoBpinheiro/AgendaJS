@@ -11,7 +11,7 @@ btnLoginGoogle.addEventListener('click', function(){
         // The signed-in user info.
         var user = result.user;
         alert("Login realizado com sucesso!");
-        window.location.replace('initial-page.html')
+        window.location.replace('agenda.html');
       }).catch(function(error) {
         // Handle Errors here.
         var errorCode = error.code;
