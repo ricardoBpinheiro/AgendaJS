@@ -92,23 +92,27 @@ function comprovarRecordatorio(recordatorio){
 function saveRecordatorios(recordatorios){
     var recordatoriosJSON = JSON.stringify(recordatorios);
     localStorage.setItem("recordatorios", recordatoriosJSON);
+    console.log("DEU BOA O SAVE");
 }
 
 //Function para exibir os itens
 function mostrarRecordatorios(){
-    var html="";
+    var html = "";
 
     var recordatorioExistentes = localStorage.getItem("recordatorios");
     if(!recordatorioValido(recordatorioExistentes)){
-        html ="Não existe nenhum lembrete";
+        html = "Não existe nenhum lembrete";
         document.getElementById("recordatorios").innerHTML = html;
+        console.log("DEU BOA NAO TER NADA DE LEMBRETE");
     }
     else{
         var recordatoriosRecuperados = JSON.parse(recordatorioExistentes);
-        for(var i = 0; i < recordatoriosRecuperados.lenght; i++){
+        for(var i = 0; i < recordatoriosRecuperados.length; i++){
             html += formatarRecordatorio(recordatoriosRecuperados[i]);
+            console.log("DEU BOA PERCORRER OS LEMBRETES");
         }
         document.getElementById("recordatorios").innerHTML = html;
+        console.log("DEU BOA TER ALGO DE LEMBRETE");
     }
 }
 
