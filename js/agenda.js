@@ -1,42 +1,91 @@
+var recordatoriosSlecionados = [];
+
+//function deletar lembretes
+
+function deletarRecordatorio() {
+    if (recordatoriosSlecionados.length > 0) {
+        var recordatorioExistentes = localStorage.getItem("recordatorios");
+        if (recordatorioExistentes == null || recordatorioExistentes == "" || typeof recordatorioExistentes == "undefined" || recordatorioExistentes == "undefined") {
+            var recordatoriosRecuperados = JSON.parse(recordatorioExistentes);
+
+            for (var i = 0; i < recordatoriosSlecionados.length; i++) {
+                for (var j = 0; j < recordatoriosSlecionados.length; j++) {
+
+                    if (recordatoriosSlecionados[i] == recordatoriosRecuperados[j].id) {
+
+                        recordatoriosRecuperados[j].id = -1;
+
+                    }
+                }
+            }
+
+            var recordatorioTemporario = [];
+            for (var i = 0; i < recordatoriosRecuperados.length; i++) {
+                if (recordatoriosRecuperados[i].id != -1) {
+                    recordatorioTemporario.push(recordatoriosRecuperados[i]);
+
+
+                }
+            }
+
+            //deletar recordatorio
+
+            if (recordatorioTemporario.length == 0) {
+                localStorage.setItem("recodatorios", "");
+            } else {
+                saveRecordatorios(recordatorioTemporario);
+            }
+
+            mostrarRecordatorios();
+            selecionarRecordatorio();
+
+
+        }
+
+    }
+}
+
+
+
 //Comprovar se está funcionando
-document.addEventListener('DOMContentLoaded', function(){
+document.addEventListener('DOMContentLoaded', function () {
     console.log("Funciona!!");
 
     // mostrarErros();
 
-    document.getElementById("buttonSave").onclick = criarLembrete;
+    document.getElementById("buttomSave").onclick = criarLembrete;
 });
 
 //Function para verificar se tem texto
-function textoValido(texto){
-    if(texto == null || texto == "" || texto.lenght < 1 ){
+function textoValido(texto) {
+    if (texto == null || texto == "" || texto.lenght < 1) {
         return false;
-    }else{
+    } else {
         return true;
     }
 }
 
 //Function para mostrar erros
-function mostrarErros(){
+function mostrarErros() {
     var html = "";
     html += '<div class="alert alert-danger" role="alert">';
     html += 'Por favor, informe alguma coisa';
-    html += '</div>';     
+    html += '</div>';
 
     document.getElementById('erro').innerHTML = html;
 }
 
 //Function para limpar o erro
 
-function limparErros(){
+function limparErros() {
     document.getElementById('erro').innerHTML = "";
 }
 
 //Function para criar lembrete
 
-function criarLembrete(){
+function criarLembrete() {
     var conteudoTextArea = document.getElementById("texto").value;
-    if(!textoValido(conteudoTextArea)){
+    if (!textoValido(conteudoTextArea)) {
         mostrarErros();
         return;
     }
@@ -51,34 +100,35 @@ function criarLembrete(){
     //JSON = js objetos
 
     var recordatorio = {
-                        "id": id,
-                        "data": data,
-                        "texto": texto
-                        };
+        "id": id,
+        "data": data,
+        "texto": texto
+    };
 
     //Function para comprovar se existe lembrete
     comprovarRecordatorio(recordatorio);
+    document.getElementById("texto").value = "";
 }
 
-function recordatorioValido(recordatorioExistentes){
-    if(recordatorioExistentes == null || recordatorioExistentes == "" || typeof recordatorioExistentes == "undefined" || recordatorioExistentes == "undefined"){
+function recordatorioValido(recordatorioExistentes) {
+    if (recordatorioExistentes == null || recordatorioExistentes == "" || typeof recordatorioExistentes == "undefined" || recordatorioExistentes == "undefined") {
         return false;
     }
-    else{
+    else {
         return true;
     }
 }
 
 //Function para comprovar se existe lembrete
-function comprovarRecordatorio(recordatorio){
+function comprovarRecordatorio(recordatorio) {
     var recordatorioExistentes = localStorage.getItem("recordatorios");
-    if(!recordatorioValido(recordatorioExistentes)){
+    if (!recordatorioValido(recordatorioExistentes)) {
         var recordatorios = [];
         recordatorios.push(recordatorio);
 
         //Salvar recordatorio
         saveRecordatorios(recordatorios);
-    }else{
+    } else {
         var recordatoriosRecuperados = JSON.parse(recordatorioExistentes);
 
         //Salva recordatorio
@@ -88,38 +138,70 @@ function comprovarRecordatorio(recordatorio){
     mostrarRecordatorios();
 }
 
+// Função para selecionar recordatorios...
+function selecionarRecordatorio() {
+    var recordatorios = document.getElementsByClassName("recordatorio");
+    for (var i = 0; i < recordatorios.length; i++) {
+        document.getElementById(recordatorios[i].id).onclick = function(e){
+            e.stopPropagation();
+            //Caso tenha recordatorio
+            if (recordatoriosSlecionados.indexOf(this.id) == -1) {
+                this.style.backgroundColor = "red";
+                recordatoriosSlecionados.push(this.id);
+            } else {
+                //Caso ñ tenha
+                this.style.backgroundColor = "#41dff4";
+                for (var b = 0; b < recordatoriosSlecionados.length; b++) {
+                    if (recordatoriosSlecionados[b] == this.id) {
+                        recordatoriosSlecionados[b] = 0;
+                    }
+
+                }
+            }
+
+            var recordatorioTemporario = [];
+            for (var j = 0; j < recordatoriosSlecionados.length; j++) {
+                if (recordatoriosSlecionados[j] != 0) {
+                    recordatorioTemporario.push(recordatoriosSlecionados[j]);
+                }
+
+            }
+
+            recordatoriosSlecionados = recordatorioTemporario;
+
+        };
+    }
+}
+
+
 //Function para salvar lembrete ou recordatorioo
-function saveRecordatorios(recordatorios){
+function saveRecordatorios(recordatorios) {
     var recordatoriosJSON = JSON.stringify(recordatorios);
     localStorage.setItem("recordatorios", recordatoriosJSON);
-    console.log("DEU BOA O SAVE");
 }
 
 //Function para exibir os itens
-function mostrarRecordatorios(){
+function mostrarRecordatorios() {
     var html = "";
 
     var recordatorioExistentes = localStorage.getItem("recordatorios");
-    if(!recordatorioValido(recordatorioExistentes)){
+    if (!recordatorioValido(recordatorioExistentes)) {
         html = "Não existe nenhum lembrete";
         document.getElementById("recordatorios").innerHTML = html;
-        console.log("DEU BOA NAO TER NADA DE LEMBRETE");
     }
-    else{
-        var recordatoriosRecuperados = JSON.parse(recordatorioExistentes);
-        for(var i = 0; i < recordatoriosRecuperados.length; i++){
+    else {
+        recordatoriosRecuperados = JSON.parse(recordatorioExistentes);
+        for (var i = 0; i < recordatoriosRecuperados.length; i++) {
             html += formatarRecordatorio(recordatoriosRecuperados[i]);
-            console.log("DEU BOA PERCORRER OS LEMBRETES");
         }
         document.getElementById("recordatorios").innerHTML = html;
-        console.log("DEU BOA TER ALGO DE LEMBRETE");
     }
 }
 
 //Função para exibir os lembretes
-function formatarRecordatorio(recordatorio){
+function formatarRecordatorio(recordatorio) {
     var html = "";
-    html += '<div class="recordatorio" id="'+ recordatorio.id + '">';
+    html += '<div class="recordatorio" id="' + recordatorio.id + '">';
     html += '<div class="row">';
     html += '<div class="col-6 text-left">';
     html += '<small><i class="fa fa-calendar-alt" aria-hidden="true"></i>' + recordatorio.data + '</small>';
@@ -129,8 +211,8 @@ function formatarRecordatorio(recordatorio){
     html += '</div>';
     html += '</div>';
     html += '<br>';
-    html += '</div class="row">';
-    html += '</div class="col-12">';
+    html += '<div class="row">';
+    html += '<div class="col-12">';
     html += recordatorio.texto;
     html += '</div>';
     html += '</div>';
@@ -140,11 +222,13 @@ function formatarRecordatorio(recordatorio){
     return html;
 }
 
-document.addEventListener('DOMContentLoaded', function(){
+document.addEventListener('DOMContentLoaded', function () {
     console.log("Funciona!!");
 
     // mostrarErros();
 
-    document.getElementById("buttonSave").onclick = criarLembrete;
+    document.getElementById("buttomSave").onclick = criarLembrete;
+    document.getElementById("buttomDelete").onclick = deletarRecordatorio;
     mostrarRecordatorios();
+    selecionarRecordatorio();
 });
