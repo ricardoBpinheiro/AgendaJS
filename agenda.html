@@ -1,81 +1,61 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css" integrity="sha384-SI27wrMjH3ZZ89r4o+fGIJtnzkAnFs3E4qz9DIYioCQ5l9Rd/7UAa8DHcaL8jkWt" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="css/style.css">                   
-    <link href="https://fonts.googleapis.com/css?family=Rammetto+One&display=swap" rel="stylesheet">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Lembrete Amigo</title>
+    <!-- Bootswatch Theme -->
+    <link rel="stylesheet" href="https://bootswatch.com/4/litera/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="App.css">
+    <style type="text/css">
+        body
+        {
+            background-image: url(t.jpg);
+            -webkit-background-size:cover;
+            background-size:cover;
+            background-position: center center; 
+        }
+    </style>
+</head>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-light bg-warning">
+        <a class="navbar-brand"  href="#">Lembrete Amigo</a>
+    </nav>
 
-  </head>
-
-  <body>
-
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container"> 
-        <h1 class="display-3" style="font-family: 'Rammetto One', cursive;">Lembrete Amigo</h1>
-        <p class="lead" style="font-family: 'Rammetto One', cursive;">Isto é uma simples Agenda de Lembretes</p>
-        </div>
-    </div>
 
     <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <div id="titular-new-reminder">
-                    <h3><i class="fa fa-plus-square"></i> Novo Lembrete</h3>         
-                </div>
-                <br>
-                <div class="form-group text-center">
-                <textarea class="form-control" rows="5"
-                id="texto"></textarea>
-                <br>
-                <div class = "row">
-                    <div class = "col-md-6">
-                        <button type="button" class="btn btn-danger form-control" id="buttomDelete"><i class="fa fa-times" aria-hidden="true"></i> Delete</button>
+        <!-- APPLICATION -->
+        <div id="App" class="row pt-5">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header bg-warning">
+                        <h4>Adicionando Produtos</h4>
+                    </div>
+                    <form id="product-form" class="card-body">
+                        <div class="form-group">
+                            <input type="text" id="name" placeholder="Nome" class="form-control">
                         </div>
-      
-                
-                    <div class = "col-md-6">
-                            <button type="button" class="btn btn-success form-control" id="buttomSave"><i class="fa fa-save" aria-hidden="true"></i> Save</button>
+                        <div class="form-group">
+                            <input type="number" id="price" step="0.01" placeholder="Preço" class="form-control">
                         </div>
-      
+                        <div class="form-group">
+                            <input type="number" id="year" min="1900" max="2099" step="1" value="2019" class="form-control">
+                        </div>
+                        <input type="submit" value="Salvar" class="btn btn-primary btn-block">
+                    </form>
                 </div>
-                </div>
-        
-
-                <div id="erro"></div>
- 
-                 
             </div>
 
-            <div class="col-md-6">                
-                <div id="titular-tarefas">
-                    <h4><i class="fa fa-exclamation-circle"></i> Pendentes</h4>
-                <div id="recordatorios">
-                    <br>
-
-                </div>
-
-                </div>
-            </div>
+            <div id="product-list" class="col-md-8"></div>
         </div>
     </div>
-  
 
+    <script src="js/agenda.js"></script>
+</body>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.js"></script>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/js/bootstrap.min.js" integrity="sha384-3qaqj0lc6sV/qpzrc1N5DC6i1VRn/HyX4qdPaiEFbn54VjQBEU341pvjz7Dv3n6P" crossorigin="anonymous"></script>
-
-    <script type="text/javascript" src="js/agenda.js"></script>
-  </body>
 </html>
