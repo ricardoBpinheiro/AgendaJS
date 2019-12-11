@@ -1,14 +1,14 @@
   // Configuração do firebase no aplicativo
   var firebaseConfig = {
-    apiKey: "AIzaSyDTfswC-qMI12DU9RM-zhpawBDk2ufjZXg",
-    authDomain: "agendajs-7dfce.firebaseapp.com",
-    databaseURL: "https://agendajs-7dfce.firebaseio.com",
-    projectId: "agendajs-7dfce",
-    storageBucket: "agendajs-7dfce.appspot.com",
-    messagingSenderId: "680453992482",
-    appId: "1:680453992482:web:eda19884d2180cd867da7b",
-    measurementId: "G-B4V0PPGTBM"
+    apiKey: "AIzaSyAojI3kv3nip4WjtARjmw_7a9jOEu3UnnE",
+    authDomain: "agenda-amiga.firebaseapp.com",
+    databaseURL: "https://agenda-amiga.firebaseio.com",
+    projectId: "agenda-amiga",
+    storageBucket: "agenda-amiga.appspot.com",
+    messagingSenderId: "1014906687846",
+    appId: "1:1014906687846:web:16c2cc5859f69560c3b8a7",
+    measurementId: "G-G8BB1QXHZT"
   };
-  // Inicia o Firebase
+  // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();

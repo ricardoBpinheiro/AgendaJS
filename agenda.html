@@ -5,58 +5,90 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Lembrete Amigo</title>
+    <title>Agenda</title>
     <!-- Bootswatch Theme -->
     <link rel="stylesheet" href="https://bootswatch.com/4/litera/bootstrap.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/App.css">
+    <link rel="stylesheet" href="css/style.css">
     <style type="text/css">
         body
         {
             background-image: url(t.png);
             -webkit-background-size:cover;
             background-size:cover;
-            background-size: 1920px 1000px;
-            background-repeat: no-repeat;
             background-position: center center; 
         }
     </style>
 </head>
 
-<body>
+<body onload="readTask()">
     <!-- Navigation -->
     <nav class="navbar navbar-light bg-primary">
-        <a class="navbar-brand"  href="#">Lembrete Amigo</a>
+        <span class="navbar-brand text-white">Agenda Amiga</span>
     </nav>
+
 
     <div class="container">
         <!-- APPLICATION -->
-        <div id="App" class="row pt-5">
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-header bg-primary">
-                        <h4>Adicionando Produtos</h4>
+        <div class="row">
+            <div class="col-md-6" id="firstSection">
+                <form class="border p-4 mb-4 " id="form">
+
+                    <div class="form-group">
+                       <label> Titulo</label>
+                       <input type="text" class="form-control" id="task" placeholder="Titulo">
                     </div>
-                    <form id="product-form" class="card-body">
-                        <div class="form-group">
-                            <input type="text" id="name" placeholder="Nome" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <input type="number" id="price" step="0.01" placeholder="Preço" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <input type="number" id="year" min="1900" max="2099" step="1" value="2019" class="form-control">
-                        </div>
-                        <input type="submit" value="Salvar" class="btn btn-primary btn-block">
-                    </form>
-                </div>
+                
+                    <div class="form-group">
+                        <label> Descrição</label>
+                        <input type="text" class="form-control" id="descrição"
+                        placeholder="Descrição">
+                    </div>
+
+                    <button type="submit" id="button1" class="btn btn-primary"> Adicionar lembrete</button>
+                    <button style="display: none" id="button2" class="btn btn-success"> Atualizar</button>
+                    <button style="display: none" id="button3" class="btn btn-danger"> Cancelar</button>
+
+                </form>
             </div>
 
-            <div id="product-list" class="col-md-8"></div>
+            <div class="col-md-6" id="cardSection">
+
+
+            </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/ce14cf87f1.js" crossorigin="anonymous"></script>
 
     <script src="js/agenda.js"></script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-database.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-analytics.js"></script>
+
+<script>
+    var firebaseConfig = {
+    apiKey: "AIzaSyAojI3kv3nip4WjtARjmw_7a9jOEu3UnnE",
+    authDomain: "agenda-amiga.firebaseapp.com",
+    databaseURL: "https://agenda-amiga.firebaseio.com",
+    projectId: "agenda-amiga",
+    storageBucket: "agenda-amiga.appspot.com",
+    messagingSenderId: "1014906687846",
+    appId: "1:1014906687846:web:16c2cc5859f69560c3b8a7",
+    measurementId: "G-G8BB1QXHZT"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+    </script>
+
 </body>
 
 </html>
